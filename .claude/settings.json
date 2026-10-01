@@ -1,0 +1,27 @@
+{
+  "includeCoAuthoredBy": false,
+  "attribution": { "commit": "", "pr": "" },
+  "permissions": {
+    "deny": [
+      "Edit(private/**)",
+      "Write(private/**)",
+      "Read(.env)",
+      "Edit(.env)",
+      "Bash(git push*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/run-tests.mjs\"",
+            "timeout": 180
+          }
+        ]
+      }
+    ]
+  }
+}
